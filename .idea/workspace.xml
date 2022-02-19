@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/mt/bank-discovery" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/bank-integrations" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/cruncher" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/emails" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/financial-products" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/into" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/models" value="PREVIEW" />
+        <entry key="$USER_HOME$/mt/payments" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+</project>
