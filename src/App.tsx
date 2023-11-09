@@ -5,9 +5,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <body>
-        <Bandagram />
-      </body>
+      <Bandagram />
     </div>
   );
 }
