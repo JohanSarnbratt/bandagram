@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import {TextField} from "@mui/material";
 import {generateLetters} from "./letters/generateLetters";
 import {stringToCharList} from "./letters/stringToCharList";
+import {compareStrings} from "./letters/compareStrings";
 
 const Row = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ export const Bandagram = () => {
   const letters = useMemo(() => {
     return shuffle(stringToCharList(correctAnswer.toLowerCase()));
   }, [correctAnswer])
-  const correct = text.toLowerCase() === correctAnswer.toLowerCase();
+  const correct = compareStrings(text, correctAnswer);
 
   return (
     <Page >
