@@ -1,4 +1,4 @@
-import {evaluateLetters} from "../generateLetters";
+import {evaluateLetters} from "../generateActiveRow";
 
 describe('evaluateLetters', () => {
   it('should not mark duplicate letters as guessed until you guess it twice', () => {

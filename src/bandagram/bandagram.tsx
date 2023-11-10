@@ -3,9 +3,10 @@ import {bands} from "./bands";
 import {shuffle} from "./shuffle";
 import styled from "@emotion/styled";
 import {TextField} from "@mui/material";
-import {generateLetters} from "./letters/generateLetters";
+import {generateActiveRow} from "./letters/generateActiveRow";
 import {stringToCharList} from "./letters/stringToCharList";
 import {compareStrings} from "./letters/compareStrings";
+import {generateGuessRow} from "./letters/generateGuessRow";
 
 const Row = styled.div`
   display: flex;
@@ -33,7 +34,10 @@ export const Bandagram = () => {
   return (
     <Page >
       <Row>
-        {generateLetters(text, letters)}
+        {generateGuessRow(text, letters)}
+      </Row>
+      <Row>
+        {generateActiveRow(text, letters)}
       </Row>
       <TextField style={{width: 300}} value={text} onChange={(event) => setText(event.target.value)}/>
       {text.length > 3 && <div>{correct ? 'Correct!' : "That's not a band"}</div>}

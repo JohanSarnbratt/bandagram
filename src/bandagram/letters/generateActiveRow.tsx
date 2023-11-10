@@ -13,7 +13,7 @@ export function evaluateLetters(input: string, letters: string[]) {
     return { letter, guessed };
   });
 }
-export function generateLetters(input: string, letters: string[]) {
+export function generateActiveRow(input: string, letters: string[]) {
   return (<>{evaluateLetters(input, letters).map(({letter, guessed}, index) => {
     return <HintLetter letter={letter} guessed={guessed} key={index} />;
   })}</>);
