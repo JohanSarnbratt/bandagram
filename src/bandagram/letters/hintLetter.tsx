@@ -4,8 +4,7 @@ import styled from "@emotion/styled";
 
 interface Props {
   letter: string;
-  guessed: boolean;
-  wrong?: boolean;
+  backgroundColor?: string;
 }
 
 const LetterCard = styled(Card)`
@@ -16,8 +15,7 @@ const LetterCard = styled(Card)`
   text-transform: uppercase;
 `
 
-export const HintLetter = ({letter, guessed, wrong}: Props): React.JSX.Element => {
-  const color = guessed ? "green" : wrong ? "red" : undefined;
-  const textColor = guessed ? "white" : undefined;
-  return (<LetterCard style={{backgroundColor: color, color: textColor}}>{letter}</LetterCard>);
+export const HintLetter = ({letter, backgroundColor}: Props): React.JSX.Element => {
+  const textColor = backgroundColor ? "white" : undefined;
+  return (<LetterCard style={{backgroundColor: backgroundColor, color: textColor}}>{letter}</LetterCard>);
 }

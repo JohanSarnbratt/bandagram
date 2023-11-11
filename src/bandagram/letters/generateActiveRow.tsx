@@ -15,6 +15,7 @@ export function evaluateLetters(input: string, letters: string[]) {
 }
 export function generateActiveRow(input: string, letters: string[]) {
   return (<>{evaluateLetters(input, letters).map(({letter, guessed}, index) => {
-    return <HintLetter letter={letter} guessed={guessed} key={index} />;
+    const backgroundColor = guessed ? "orange" :  undefined;
+    return <HintLetter letter={letter} backgroundColor={backgroundColor} key={index} />;
   })}</>);
 }

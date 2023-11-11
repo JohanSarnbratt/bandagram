@@ -1,4 +1,4 @@
-export const bands = [
+export const top3000artists = [
 "Adele",
 "Joey + Rory",
 "Draaco Aventura",
