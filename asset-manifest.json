@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/bandagram/static/css/main.435d5fe5.chunk.css",
+    "main.js": "/bandagram/static/js/main.ac1894b2.chunk.js",
+    "main.js.map": "/bandagram/static/js/main.ac1894b2.chunk.js.map",
+    "runtime~main.js": "/bandagram/static/js/runtime~main.7b8ac8f1.js",
+    "runtime~main.js.map": "/bandagram/static/js/runtime~main.7b8ac8f1.js.map",
+    "static/js/2.4b47fc34.chunk.js": "/bandagram/static/js/2.4b47fc34.chunk.js",
+    "static/js/2.4b47fc34.chunk.js.map": "/bandagram/static/js/2.4b47fc34.chunk.js.map",
+    "static/js/3.a55009c7.chunk.js": "/bandagram/static/js/3.a55009c7.chunk.js",
+    "static/js/3.a55009c7.chunk.js.map": "/bandagram/static/js/3.a55009c7.chunk.js.map",
+    "index.html": "/bandagram/index.html",
+    "precache-manifest.8d54cb58d5639a04fe31ffd81541d783.js": "/bandagram/precache-manifest.8d54cb58d5639a04fe31ffd81541d783.js",
+    "service-worker.js": "/bandagram/service-worker.js",
+    "static/css/main.435d5fe5.chunk.css.map": "/bandagram/static/css/main.435d5fe5.chunk.css.map"
+  }
+}
