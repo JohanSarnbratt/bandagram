@@ -13,6 +13,8 @@ const LetterCard = styled(Card)`
   font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
+  display: inline-block;
+  margin: 3px;
 `
 
 export const HintLetter = ({letter, backgroundColor}: Props): React.JSX.Element => {

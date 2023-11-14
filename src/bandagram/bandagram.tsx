@@ -9,9 +9,7 @@ import {compareStrings} from "./letters/compareStrings";
 import {bandNames} from "./data/quizbands";
 
 const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
+  display: inline-block;
 `;
 const CenterPage = styled.div`
   display: flex;
@@ -61,12 +59,10 @@ export const Bandagram = () => {
         <Row>
           {generateActiveRow(text, letters)}
         </Row>
-        <Row>
           <form onSubmit={onGuess}>
-            <Input style={{width: 300}} value={text} onChange={(event) => setText(event.target.value)} />
+            <Input style={{maxWidth: 300, width: '100%'}} value={text} onChange={(event) => setText(event.target.value)} />
             <Button type="submit" onClick={onGuess}>Guess</Button>
           </form>
-        </Row>
       </>
       }
     </Page>
