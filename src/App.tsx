@@ -1,7 +1,7 @@
 import './App.css';
 import {Bandagram} from "./bandagram/bandagram";
 import React, {useMemo} from 'react';
-import {bandNames} from "./bandagram/data/quizbands";
+import {bandNames} from "./bandagram/data/properlengthbands";
 
 function App() {
   const correctAnswer = useMemo(() => {
