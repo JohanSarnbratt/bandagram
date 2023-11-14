@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bandagram/precache-manifest.901b62c41adfe50dcb03c66c7ee27aa6.js"
+  "/bandagram/precache-manifest.76523ba7395036e4120d656e423336c7.js"
 );
 
 self.addEventListener('message', (event) => {
