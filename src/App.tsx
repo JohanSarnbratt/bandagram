@@ -1,11 +1,15 @@
 import './App.css';
 import {Bandagram} from "./bandagram/bandagram";
-import React from 'react';
+import React, {useMemo} from 'react';
+import {bandNames} from "./bandagram/data/quizbands";
 
 function App() {
+  const correctAnswer = useMemo(() => {
+    return bandNames[Math.floor(Math.random() * bandNames.length)];
+  }, []);
   return (
     <div className="App">
-      <Bandagram />
+      <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2}/>
     </div>
   );
 }
