@@ -7,6 +7,7 @@ import {stringToCharList} from "./letters/stringToCharList";
 import {generateGuessRow} from "./letters/generateGuessRow";
 import {compareStrings} from "./letters/compareStrings";
 import {randomString} from "./letters/randomString";
+import {Finished} from "./Finished";
 
 const Row = styled.div`
   display: inline-block;
@@ -64,7 +65,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
     setGuesses([...guesses, text])
     setText('')
   }
-  const correct = guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)
+  const gameOver = (guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)) || guesses.length > 5;
 
   return (
     <CenterPage>
@@ -74,11 +75,8 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
             {generateGuessRow(guess, correctAnswer)}
           </Row>)
         })}
-        {correct ?
-          (<CenterPage>
-            <Typography variant="body1"> {correctAnswer}</Typography>
-            <h1>Good job!</h1>
-          </CenterPage>) :
+        {gameOver ?
+          (<Finished correctAnswer={correctAnswer} lastGuess={guesses[guesses.length - 1]}/>) :
           (<>
             <Typography variant="body2" align="center" sx={{fontSize: 12}}>
               Missing letters: {missingLetters} Fake letters: {noFakeLetters}
