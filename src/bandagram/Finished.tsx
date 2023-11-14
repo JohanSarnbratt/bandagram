@@ -14,7 +14,7 @@ interface Props {
   correctAnswer: string;
   lastGuess: string;
 }
-
+//TODO gör en share knapp (bara för daily quiz?)
 export const Finished = ({correctAnswer, lastGuess}: Props) => {
   const correct =  compareStrings(lastGuess, correctAnswer);
   return (
