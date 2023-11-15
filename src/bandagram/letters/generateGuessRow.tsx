@@ -2,9 +2,9 @@ import {HintLetter} from "./hintLetter";
 import React from "react";
 import {stringToCharList} from "./stringToCharList";
 
-function evaluateLetters(guess: string, correctAnswer: string) {
+function evaluateLetters(guess: string, correctAnswer: string, fakeLetters: string[]) {
   const letters = stringToCharList(correctAnswer);
-  let remainingLetters: string[] = [...letters];
+  let remainingLetters: string[] = [...letters, ...fakeLetters];
   return stringToCharList(guess).map((guessLetter, index) => {
     const notWrong = remainingLetters.includes(guessLetter);
     if (notWrong) {
@@ -23,8 +23,8 @@ function evaluateLetters(guess: string, correctAnswer: string) {
  * @param guess
  * @param correctAnswer
  */
-export function generateGuessRow(guess: string, correctAnswer: string) {
-  return (<>{evaluateLetters(guess, correctAnswer).map(({guessLetter, guessed, wrong}, index) => {
+export function generateGuessRow(guess: string, correctAnswer: string, fakeLetters: string[]) {
+  return (<>{evaluateLetters(guess, correctAnswer, fakeLetters).map(({guessLetter, guessed, wrong}, index) => {
     const backgroundColor = guessed ? "green" : wrong ? "red" : undefined;
     return <HintLetter letter={guessLetter} backgroundColor={backgroundColor} key={index} />;
   })}</>);

@@ -72,7 +72,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
       <Page >
         {guesses.map((guess, i) => {
           return (<Row key={i}>
-            {generateGuessRow(guess, correctAnswer)}
+            {generateGuessRow(guess, correctAnswer, fakeLetters)}
           </Row>)
         })}
         {gameOver ?
