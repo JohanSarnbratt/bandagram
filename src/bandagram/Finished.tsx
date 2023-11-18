@@ -59,5 +59,5 @@ const shareText = (guesses: string[], correctAnswer: string): string => {
       }
     }).join('');
   }).join('\n');
-  return `I finished Bandagranm #${dayNumber()}\n${mojis}`;
+  return `I finished Bandagram #${dayNumber()}\n${mojis}`;
 }
