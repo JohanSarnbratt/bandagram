@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 interface Props {
   letter: string;
   backgroundColor?: string;
+  onClick?(): void;
 }
 
 const LetterCard = styled(Card)`
@@ -17,7 +18,7 @@ const LetterCard = styled(Card)`
   margin: 3px;
 `
 
-export const HintLetter = ({letter, backgroundColor}: Props): React.JSX.Element => {
+export const HintLetter = ({letter, backgroundColor, onClick}: Props): React.JSX.Element => {
   const textColor = backgroundColor ? "white" : undefined;
-  return (<LetterCard style={{backgroundColor: backgroundColor, color: textColor}}>{letter}</LetterCard>);
+  return (<LetterCard style={{backgroundColor: backgroundColor, color: textColor}} onClick={onClick}>{letter}</LetterCard>);
 }

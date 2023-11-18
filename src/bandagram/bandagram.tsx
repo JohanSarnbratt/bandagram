@@ -55,6 +55,9 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
     onMakeGuess(text)
     setText('')
   }
+  const onLetterClick = (letter: string) => {
+    setText(text + letter)
+  };
   const gameOver = (guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)) || guesses.length > 5;
 
   return (
@@ -71,7 +74,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
               Missing letters: {missingLetters} Fake letters: {noFakeLetters}
             </Typography>
             <Row>
-              {generateActiveRow(text, allLetters)}
+              {generateActiveRow(text, allLetters, onLetterClick)}
             </Row>
             <form onSubmit={onGuess}>
               <Input style={{maxWidth: 300, width: '100%'}} value={text} onChange={(event) => setText(event.target.value)} />

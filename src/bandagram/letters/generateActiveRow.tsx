@@ -13,9 +13,9 @@ export function evaluateLetters(input: string, letters: string[]) {
     return { letter, guessed };
   });
 }
-export function generateActiveRow(input: string, letters: string[]) {
+export function generateActiveRow(input: string, letters: string[], onLetterClick: (letter: string) => void) {
   return (<>{evaluateLetters(input, letters).map(({letter, guessed}, index) => {
     const backgroundColor = guessed ? "orange" :  undefined;
-    return <HintLetter letter={letter} backgroundColor={backgroundColor} key={index} />;
+    return <HintLetter letter={letter} backgroundColor={backgroundColor} key={index} onClick={() => onLetterClick(letter)} />;
   })}</>);
 }
