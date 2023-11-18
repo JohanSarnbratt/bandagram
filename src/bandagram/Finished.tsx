@@ -1,7 +1,9 @@
-import {Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import React from "react";
 import styled from "@emotion/styled";
 import {compareStrings} from "./letters/compareStrings";
+import {guessStatusOfLetters} from "./letters/generateGuessRow";
+import {dayNumber} from "./dayNumber";
 
 const CenterPage = styled.div`
   display: flex;
@@ -12,12 +14,12 @@ const CenterPage = styled.div`
 
 interface Props {
   correctAnswer: string;
-  lastGuess: string;
+  guesses: string[];
   playAgain?(): void;
 }
 //TODO gör en share knapp (bara för daily quiz?)
-export const Finished = ({correctAnswer, lastGuess, playAgain}: Props) => {
-  const correct =  compareStrings(lastGuess, correctAnswer);
+export const Finished = ({correctAnswer, guesses, playAgain}: Props) => {
+  const correct =  compareStrings(guesses[guesses.length - 1], correctAnswer);
   return (
     <CenterPage>
       {correct ? (
@@ -32,8 +34,30 @@ export const Finished = ({correctAnswer, lastGuess, playAgain}: Props) => {
       </>
     )}
     {playAgain && (
-      <button onClick={playAgain}>Play again</button>
+      <Button onClick={playAgain} variant="contained">Play again</Button>
+    )}
+    {!playAgain && (
+      <Button
+        onClick={() => {navigator.clipboard.writeText(shareText(guesses, correctAnswer))}}
+        variant="contained"
+      >Share!</Button>
     )}
     </CenterPage>
   );
 };
+
+const shareText = (guesses: string[], correctAnswer: string): string => {
+
+  const mojis = guesses.map(guess => {
+    return guessStatusOfLetters(guess, correctAnswer, []).map(({guessLetter, correct, wrong}, index) => {
+      if (correct) {
+        return '🟢';
+      } else if (wrong) {
+        return '🔴';
+      } else {
+        return '⚪';
+      }
+    }).join('');
+  }).join('\n');
+  return `I finished Bandagranm #${dayNumber()}\n${mojis}`;
+}

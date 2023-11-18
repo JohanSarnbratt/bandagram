@@ -4,6 +4,7 @@ import {bandNames} from "./data/dailyquiz";
 import {mulberry32} from "./data/mulberryrandom";
 import Cookies from "universal-cookie";
 import {DailyState} from "./cookie/cookie";
+import {dayNumber} from "./dayNumber";
 
 export const DailyQuiz = () => {
   const {correctAnswer, random} = useMemo(() => {
@@ -17,22 +18,22 @@ export const DailyQuiz = () => {
     setBlob(!blob);
   }
   return (
-    <Bandagram
-      correctAnswer={correctAnswer}
-      initMissingLetters={2}
-      initFakeLetters={2}
-      random={random}
-      guesses={guesses}
-      onMakeGuess={onMakeGuess}
-    />
+    <>
+      <h1>Bandagram #{dayNumber()}</h1>
+      <Bandagram
+        correctAnswer={correctAnswer}
+        initMissingLetters={2}
+        initFakeLetters={2}
+        random={random}
+        guesses={guesses}
+        onMakeGuess={onMakeGuess}
+      />
+    </>
   );
 }
 
 function answerOfTheDay() {
-  const today = new Date();
-  const firstDay = new Date(2023, 10, 18);
-  const diff = Math.abs(today.getTime() - firstDay.getTime())/ (1000 * 60 * 60 * 24);
-  const index = Math.floor(diff) % bandNames.length;
+  const index = dayNumber() % bandNames.length;
   const random = mulberry32(index);
   return {correctAnswer: bandNames[index], random};
 }

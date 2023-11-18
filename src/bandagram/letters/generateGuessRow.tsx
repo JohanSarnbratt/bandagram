@@ -2,7 +2,13 @@ import {HintLetter} from "./hintLetter";
 import React from "react";
 import {stringToCharList} from "./stringToCharList";
 
-function evaluateLetters(guess: string, correctAnswer: string, fakeLetters: string[]) {
+export interface GuessStatus {
+  guessLetter: string;
+  correct: boolean;
+  wrong: boolean;
+}
+
+export function guessStatusOfLetters(guess: string, correctAnswer: string, fakeLetters: string[]): GuessStatus[] {
   const letters = stringToCharList(correctAnswer);
   let remainingLetters: string[] = [...letters, ...fakeLetters];
   return stringToCharList(guess).map((guessLetter, index) => {
@@ -12,7 +18,7 @@ function evaluateLetters(guess: string, correctAnswer: string, fakeLetters: stri
       remainingLetters.splice(index, 1)
     }
     const guessed = guessLetter === letters[index];
-    return { guessLetter, guessed , wrong: !notWrong};
+    return { guessLetter, correct: guessed , wrong: !notWrong};
   });
 }
 
@@ -22,10 +28,11 @@ function evaluateLetters(guess: string, correctAnswer: string, fakeLetters: stri
  * todo: when you use multiple of a letter and a later one is green, the earlier ones should maybe be red?
  * @param guess
  * @param correctAnswer
+ * @param fakeLetters
  */
 export function generateGuessRow(guess: string, correctAnswer: string, fakeLetters: string[]) {
-  return (<>{evaluateLetters(guess, correctAnswer, fakeLetters).map(({guessLetter, guessed, wrong}, index) => {
-    const backgroundColor = guessed ? "green" : wrong ? "red" : undefined;
+  return (<>{guessStatusOfLetters(guess, correctAnswer, fakeLetters).map(({guessLetter, correct, wrong}, index) => {
+    const backgroundColor = correct ? "green" : wrong ? "red" : undefined;
     return <HintLetter letter={guessLetter} backgroundColor={backgroundColor} key={index} />;
   })}</>);
 }

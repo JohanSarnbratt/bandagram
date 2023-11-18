@@ -17,7 +17,6 @@ const Page = styled.div`
   flex-direction: column;
   gap: 5px;
   align-items: flex-start;
-  margin-top: 50px;
 `;
 
 interface Props {
@@ -66,7 +65,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
           </Row>)
         })}
         {gameOver ?
-          (<Finished correctAnswer={correctAnswer} lastGuess={guesses[guesses.length - 1]} playAgain={playAgain}/>) :
+          (<Finished correctAnswer={correctAnswer} guesses={guesses} playAgain={playAgain}/>) :
           (<>
             <Typography variant="body2" align="center" sx={{fontSize: 12}}>
               Missing letters: {missingLetters} Fake letters: {noFakeLetters}
