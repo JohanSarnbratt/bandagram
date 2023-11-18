@@ -8,6 +8,6 @@ export const Practice = () => {
   }, []);
   //TODO allow user to select number of missing letters and fake letters
   return (
-    <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2}/>
+    <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2} random={Math.random}/>
   );
 }

@@ -1,9 +1,10 @@
-export function randomString(length: number): string {
+export function randomString(length: number, random: () => number): string {
   let text = "";
-  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  //Letters appearing according to how common they are in dailyquiz.ts
+  const possible = "AAAAABBCCCDDDEEEEEFFGGHHHIIIIJJKKLLLLMMMNNNNOOOOPPQRRRRSSSSTTTTUUVWWXYYZÅÄÖ";
 
   for (let i = 0; i < length; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+    text += possible.charAt(Math.floor(random() * possible.length));
 
   return text;
 }

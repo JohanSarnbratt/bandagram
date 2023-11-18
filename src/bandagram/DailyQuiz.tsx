@@ -8,7 +8,7 @@ export const DailyQuiz = () => {
     return guessOfTheDay();
   }, []);
   return (
-    <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2}/>
+    <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2} random={random}/>
   );
 }
 

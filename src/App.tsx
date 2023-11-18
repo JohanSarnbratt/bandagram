@@ -19,15 +19,14 @@ enum TabsEnum {
 }
 //TODO välj mellan träna och daily quiz
 function App() {
-  const [value, setValue] = React.useState(TabsEnum.Practice);
+  const [value, setValue] = React.useState(TabsEnum.DailyQuiz);
   return (
     <CenterPage className="App">
 
-      <Tabs>
+      <Tabs value={value}>
         <Tab label="Daily Quiz" value={TabsEnum.DailyQuiz} onClick={() => setValue(TabsEnum.DailyQuiz)}/>
         <Tab label="Practice" value={TabsEnum.Practice} onClick={() => setValue(TabsEnum.Practice)}/>
       </Tabs>
-      {value}
       {value === TabsEnum.Practice &&
 
         <Practice />

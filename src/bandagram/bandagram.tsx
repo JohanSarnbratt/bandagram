@@ -24,9 +24,10 @@ interface Props {
   correctAnswer: string;
   initMissingLetters: number;
   initFakeLetters: number;
+  random: () => number;
 }
 
-export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: Props) => {
+export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, random}: Props) => {
   const [guesses, setGuesses] = useState<string[]>([])
   const [text, setText] = React.useState('');
   const [missingLetters, setMissingLetters] = useState(initMissingLetters)
@@ -34,20 +35,20 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
 
   //Overusing useMemo to avoid activeRow re-renders when typing
   const correctLetters = useMemo((): string[] => {
-    return shuffle(stringToCharList(correctAnswer.toLowerCase()));
-  }, [correctAnswer])
+    return shuffle(stringToCharList(correctAnswer.toLowerCase()), random);
+  }, [correctAnswer, random])
   const letters = useMemo(() => {
     return missingLetters > 0 ? correctLetters.slice(0, -missingLetters) : correctLetters
   }, [missingLetters, correctLetters]);
   const allFakeLetters = useMemo((): string[] => {
-    return stringToCharList(randomString(initFakeLetters));
-  }, [initFakeLetters])
+    return stringToCharList(randomString(initFakeLetters, random));
+  }, [initFakeLetters, random])
   const fakeLetters = useMemo(() => {
     return allFakeLetters.slice(0, noFakeLetters);
   }, [noFakeLetters, allFakeLetters]);
   const allLetters = useMemo(() => {
-    return shuffle([...letters, ...fakeLetters]);
-  }, [letters, fakeLetters]);
+    return shuffle([...letters, ...fakeLetters], random);
+  }, [letters, fakeLetters, random]);
   const onGuess = (event: FormEvent) => {
     event.preventDefault()
     if (guesses.length % 2 === 0 && noFakeLetters > 0) {
