@@ -12,12 +12,6 @@ import {Finished} from "./Finished";
 const Row = styled.div`
   display: inline-block;
 `;
-const CenterPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  `;
 const Page = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,7 +62,6 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
   const gameOver = (guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)) || guesses.length > 5;
 
   return (
-    <CenterPage>
       <Page >
         {guesses.map((guess, i) => {
           return (<Row key={i}>
@@ -91,6 +84,5 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters}: 
           </>)
         }
       </Page>
-    </CenterPage>
   );
 }

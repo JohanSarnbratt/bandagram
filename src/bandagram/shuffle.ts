@@ -1,11 +1,11 @@
-export function shuffle<T>(array: T[]): T[] {
+export function shuffle<T>(array: T[], random: () => number): T[] {
   let currentIndex = array.length,  randomIndex;
 
   // While there remain elements to shuffle.
   while (currentIndex > 0) {
 
     // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
+    randomIndex = Math.floor(random() * currentIndex);
     currentIndex--;
 
     // And swap it with the current element.
