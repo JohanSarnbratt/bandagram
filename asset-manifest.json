@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/bandagram/static/css/main.435d5fe5.chunk.css",
-    "main.js": "/bandagram/static/js/main.1272f2a5.chunk.js",
-    "main.js.map": "/bandagram/static/js/main.1272f2a5.chunk.js.map",
-    "runtime~main.js": "/bandagram/static/js/runtime~main.347e7b58.js",
-    "runtime~main.js.map": "/bandagram/static/js/runtime~main.347e7b58.js.map",
-    "static/js/2.998d51a8.chunk.js": "/bandagram/static/js/2.998d51a8.chunk.js",
-    "static/js/2.998d51a8.chunk.js.map": "/bandagram/static/js/2.998d51a8.chunk.js.map",
-    "static/js/3.2d705904.chunk.js": "/bandagram/static/js/3.2d705904.chunk.js",
-    "static/js/3.2d705904.chunk.js.map": "/bandagram/static/js/3.2d705904.chunk.js.map",
+    "main.js": "/bandagram/static/js/main.d5a19c04.chunk.js",
+    "main.js.map": "/bandagram/static/js/main.d5a19c04.chunk.js.map",
+    "runtime~main.js": "/bandagram/static/js/runtime~main.2b6c43c8.js",
+    "runtime~main.js.map": "/bandagram/static/js/runtime~main.2b6c43c8.js.map",
+    "static/js/2.3e7bcc85.chunk.js": "/bandagram/static/js/2.3e7bcc85.chunk.js",
+    "static/js/2.3e7bcc85.chunk.js.map": "/bandagram/static/js/2.3e7bcc85.chunk.js.map",
+    "static/js/3.c65884e5.chunk.js": "/bandagram/static/js/3.c65884e5.chunk.js",
+    "static/js/3.c65884e5.chunk.js.map": "/bandagram/static/js/3.c65884e5.chunk.js.map",
     "index.html": "/bandagram/index.html",
-    "precache-manifest.609f7e4f59edc2b3303df5e34fab214f.js": "/bandagram/precache-manifest.609f7e4f59edc2b3303df5e34fab214f.js",
+    "precache-manifest.9307cb7864e77af5c7f318411e22493c.js": "/bandagram/precache-manifest.9307cb7864e77af5c7f318411e22493c.js",
     "service-worker.js": "/bandagram/service-worker.js",
     "static/css/main.435d5fe5.chunk.css.map": "/bandagram/static/css/main.435d5fe5.chunk.css.map"
   }
