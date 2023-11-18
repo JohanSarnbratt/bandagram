@@ -1,4 +1,4 @@
-import React, {FormEvent, useMemo, useState} from 'react';
+import React, {FormEvent, useMemo} from 'react';
 import {shuffle} from "./shuffle";
 import styled from "@emotion/styled";
 import {Button, Input, Typography} from "@mui/material";
@@ -25,13 +25,15 @@ interface Props {
   initMissingLetters: number;
   initFakeLetters: number;
   random: () => number;
+  guesses: string[];
+  onMakeGuess: (guess: string) => void;
+  playAgain?(): void;
 }
 
-export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, random}: Props) => {
-  const [guesses, setGuesses] = useState<string[]>([])
+export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, random, guesses, onMakeGuess, playAgain}: Props) => {
   const [text, setText] = React.useState('');
-  const [missingLetters, setMissingLetters] = useState(initMissingLetters)
-  const [noFakeLetters, setNoFakeLetters] = useState(initFakeLetters)
+  const missingLetters = Math.max(initMissingLetters - Math.floor(guesses.length/2), 0)
+  const noFakeLetters = Math.max(initFakeLetters - Math.ceil(guesses.length/2), 0)
 
   //Overusing useMemo to avoid activeRow re-renders when typing
   const correctLetters = useMemo((): string[] => {
@@ -51,13 +53,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
   }, [letters, fakeLetters, random]);
   const onGuess = (event: FormEvent) => {
     event.preventDefault()
-    if (guesses.length % 2 === 0 && noFakeLetters > 0) {
-      setNoFakeLetters(noFakeLetters - 1);
-    }
-    if (guesses.length % 2 === 1 && missingLetters > 0) {
-      setMissingLetters(missingLetters - 1);
-    }
-    setGuesses([...guesses, text])
+    onMakeGuess(text)
     setText('')
   }
   const gameOver = (guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)) || guesses.length > 5;
@@ -70,7 +66,7 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
           </Row>)
         })}
         {gameOver ?
-          (<Finished correctAnswer={correctAnswer} lastGuess={guesses[guesses.length - 1]}/>) :
+          (<Finished correctAnswer={correctAnswer} lastGuess={guesses[guesses.length - 1]} playAgain={playAgain}/>) :
           (<>
             <Typography variant="body2" align="center" sx={{fontSize: 12}}>
               Missing letters: {missingLetters} Fake letters: {noFakeLetters}

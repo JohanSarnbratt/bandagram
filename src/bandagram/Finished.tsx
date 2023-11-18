@@ -13,9 +13,10 @@ const CenterPage = styled.div`
 interface Props {
   correctAnswer: string;
   lastGuess: string;
+  playAgain?(): void;
 }
 //TODO gör en share knapp (bara för daily quiz?)
-export const Finished = ({correctAnswer, lastGuess}: Props) => {
+export const Finished = ({correctAnswer, lastGuess, playAgain}: Props) => {
   const correct =  compareStrings(lastGuess, correctAnswer);
   return (
     <CenterPage>
@@ -29,6 +30,9 @@ export const Finished = ({correctAnswer, lastGuess}: Props) => {
         <Typography variant="body1"> {correctAnswer}</Typography>
         <h1>So close! Better luck next time...</h1>
       </>
+    )}
+    {playAgain && (
+      <button onClick={playAgain}>Play again</button>
     )}
     </CenterPage>
   );

@@ -1,13 +1,27 @@
 import {Bandagram} from "./bandagram";
-import React, {useMemo} from "react";
+import React, { useState} from "react";
 import {bandNames} from "./data/properlengthbands";
 
 export const Practice = () => {
-  const correctAnswer = useMemo(() => {
-    return bandNames[Math.floor(Math.random() * bandNames.length)];
-  }, []);
+  const [answer, setAnswer] = useState(bandNames[Math.floor(Math.random() * bandNames.length)])
+  const [guesses, setGuesses] = useState<string[]>([])
+  const onMakeGuess = (guess: string) => {
+    setGuesses([...guesses, guess]);
+  };
+  const playAgain = () => {
+    setAnswer(bandNames[Math.floor(Math.random() * bandNames.length)]);
+    setGuesses([]);
+  }
   //TODO allow user to select number of missing letters and fake letters
   return (
-    <Bandagram correctAnswer={correctAnswer} initMissingLetters={2} initFakeLetters={2} random={Math.random}/>
+    <Bandagram
+      correctAnswer={answer}
+      initMissingLetters={2}
+      initFakeLetters={2}
+      random={Math.random}
+      guesses={guesses}
+      onMakeGuess={onMakeGuess}
+      playAgain={playAgain}
+    />
   );
 }
