@@ -1,5 +1,5 @@
 import {Bandagram} from "./bandagram";
-import React, {useMemo, useState} from "react";
+import React, {useMemo} from "react";
 import {bandNames} from "./data/dailyquiz";
 import {mulberry32} from "./data/mulberryrandom";
 import Cookies from "universal-cookie";
