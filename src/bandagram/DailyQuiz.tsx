@@ -11,11 +11,9 @@ export const DailyQuiz = () => {
     return answerOfTheDay();
   }, []);
   const cookies = new Cookies('dailyState', { path: '/' });
-  const [blob, setBlob] = useState(true);
   const guesses = guessesOfTheDay(cookies);
   const onMakeGuess = (guess: string) => {
     cookies.set('dailyState', {...cookies.get('dailyState'), guesses: [...guesses, guess]}, {path: '/'});
-    setBlob(!blob);
   }
   return (
     <>
