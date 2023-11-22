@@ -47,6 +47,8 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
 
   }, [onMakeGuess, text])
   const backgroundKeyDown = useCallback((e: KeyboardEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     // Handle any keydown events globally
     console.log('Key pressed:', e.key);
     onKeyDown(e.key);
@@ -94,6 +96,8 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
   }, []);
 
   const inputKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     // Handle keyboard events here
     console.log('Key pressed:', event);
     onKeyDown(event.target.value);
