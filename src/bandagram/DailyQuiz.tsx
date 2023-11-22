@@ -11,9 +11,11 @@ export const DailyQuiz = () => {
     return answerOfTheDay();
   }, []);
   const cookies = new Cookies('dailyState', { path: '/' });
-  const guesses = guessesOfTheDay(cookies);
+  const [guesses, setGuesses] = useState(guessesOfTheDay(cookies))
   const onMakeGuess = (guess: string) => {
-    cookies.set('dailyState', {...cookies.get('dailyState'), guesses: [...guesses, guess]}, {path: '/'});
+    const newGuesses = [...guesses, guess];
+    cookies.set('dailyState', {...cookies.get('dailyState'), guesses: newGuesses}, {path: '/'});
+    setGuesses(newGuesses); //TODO: This is a hack to get the guesses to update
   }
   return (
     <>
