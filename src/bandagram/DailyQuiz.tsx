@@ -11,11 +11,11 @@ export const DailyQuiz = () => {
     return answerOfTheDay();
   }, []);
   const cookies = new Cookies('dailyState', { path: '/' });
-  const [guesses, setGuesses] = useState(guessesOfTheDay(cookies))
+  const [guesses, setGuesses] = React.useState(guessesOfTheDay(cookies))
   const onMakeGuess = (guess: string) => {
     const newGuesses = [...guesses, guess];
     cookies.set('dailyState', {...cookies.get('dailyState'), guesses: newGuesses}, {path: '/'});
-    setGuesses(newGuesses); //TODO: This is a hack to get the guesses to update
+    setGuesses(newGuesses);
   }
   return (
     <>

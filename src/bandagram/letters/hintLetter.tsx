@@ -16,6 +16,7 @@ const LetterCard = styled(Card)`
   text-transform: uppercase;
   display: inline-block;
   margin: 3px;
+  text-align: center;
 `
 
 export const HintLetter = ({letter, backgroundColor, onClick}: Props): React.JSX.Element => {

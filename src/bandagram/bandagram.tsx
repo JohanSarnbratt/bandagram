@@ -12,12 +12,24 @@ import {generateInputRow} from "./letters/generateInputRow";
 
 const Row = styled.div`
   display: inline-block;
+  text-align: left;
 `;
 const Page = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
   align-items: flex-start;
+`;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const Center = styled.div`
+  align-items: center;
+`;
+const WideForm = styled.form`
+  width: 100%;
 `;
 
 interface Props {
@@ -35,35 +47,12 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
   const missingLetters = Math.max(initMissingLetters - Math.floor(guesses.length/2), 0)
   const noFakeLetters = Math.max(initFakeLetters - Math.ceil(guesses.length/2), 0)
 
-  const onKeyDown = useCallback((letter: string) => {
-    if (letter.length === 1) {
-      setText(text + letter);
-    } else if (letter === 'Backspace') {
-      setText(text.slice(0, -1));
-    } else if (letter === 'Enter' && text.length > 0) {
-      onMakeGuess(text)
-      setText('')
-    }
 
-  }, [onMakeGuess, text])
-  const backgroundKeyDown = useCallback((e: KeyboardEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // Handle any keydown events globally
-    console.log('Key pressed:', e.key);
-    onKeyDown(e.key);
-  }, [onKeyDown]);
-  useEffect(() => {
-    document.addEventListener('keydown', backgroundKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', backgroundKeyDown);
-    };
-  }, [backgroundKeyDown]);
   //Overusing useMemo to avoid activeRow re-renders when typing
   const correctLetters = useMemo((): string[] => {
     return shuffle(stringToCharList(correctAnswer.toLowerCase()), random);
   }, [correctAnswer, random])
+  const correctLength = correctLetters.length;
   const letters = useMemo(() => {
     return missingLetters > 0 ? correctLetters.slice(0, -missingLetters) : correctLetters
   }, [missingLetters, correctLetters]);
@@ -78,8 +67,11 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
   }, [letters, fakeLetters, random]);
   const onGuess = (event: FormEvent) => {
     event.preventDefault()
-    onMakeGuess(text)
-    setText('')
+    event.stopPropagation();
+    if (text.length > 0) {
+      onMakeGuess(text)
+      setText('')
+    }
   }
   const onLetterClick = (letter: string) => {
     setText(text + letter)
@@ -87,29 +79,37 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
   const gameOver = (guesses.length && compareStrings(guesses[guesses.length - 1], correctAnswer)) || guesses.length > 5;
   const hiddenInputRef = useRef(null);
 
-  // @ts-ignore
-  const focusIt = () => hiddenInputRef?.current?.focus();
+  const focusIt = () => {
+    if (!gameOver) {
+      // @ts-ignore
+      hiddenInputRef?.current?.focus();
+    }
+  }
   useEffect(() => {
-    // Focus on the hidden input when the component mounts
+    // Focus on the hidden input all the time
+    focusIt();
     // @ts-ignore
-    hiddenInputRef?.current?.focus();
-  }, []);
+  }, [hiddenInputRef?.current?.focus]);
+  useEffect(() => {
+    // Focus on the hidden input all the time
+    //TODO don't focus when game is over
+    focusIt();
+  });
 
   const inputKeyDown = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    // Handle keyboard events here
-    console.log('Key pressed:', event);
-    onKeyDown(event.target.value);
+    //auto complete allows you to input more letters at a time:
+    //todo take first n letters of event.target.value (ignoring spaces) and set text to that
+    //filter input from spaces? :thinking_emoji:
+    //stringToCharList removes spaces, convert to get proper length
+    const str = stringToCharList(event.target.value);
+    if (str.length <= correctLetters.length) {
+      setText(event.target.value);
+    }
   };
   return (
       <Page >
-        <input
-          ref={hiddenInputRef}
-          style={{ position: 'absolute', left: '-9999px' }}
-          value={''}
-          onChange={inputKeyDown}
-        />
         {guesses.map((guess, i) => {
           return (<Row key={i}>
             {generateGuessRow(guess, correctAnswer, fakeLetters)}
@@ -124,11 +124,23 @@ export const Bandagram = ({correctAnswer, initMissingLetters, initFakeLetters, r
             <Row>
               {generateActiveRow(text, allLetters, onLetterClick)}
             </Row>
-            <form onSubmit={onGuess}>
-              {generateInputRow(text)}
-              <Button type="submit" onClick={onGuess}>Guess</Button>
-              <Button onClick={focusIt}>keyboard</Button>
-            </form>
+            <WideForm onSubmit={onGuess}>
+              <Column>
+                <Row>
+                  {generateInputRow(text)}
+                </Row>
+                <Center>
+                  <Button type="submit" onClick={onGuess}>Guess</Button>
+                </Center>
+              </Column>
+              <input
+                ref={hiddenInputRef}
+                style={{ position: 'absolute', left: '-9999px' }}
+                value={text}
+                onChange={inputKeyDown}
+                onBlur={focusIt}
+              />
+            </WideForm>
           </>)
         }
       </Page>
