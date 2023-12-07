@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/bandagram/static/css/main.435d5fe5.chunk.css",
-    "main.js": "/bandagram/static/js/main.78ab1871.chunk.js",
-    "main.js.map": "/bandagram/static/js/main.78ab1871.chunk.js.map",
+    "main.js": "/bandagram/static/js/main.17214a62.chunk.js",
+    "main.js.map": "/bandagram/static/js/main.17214a62.chunk.js.map",
     "runtime~main.js": "/bandagram/static/js/runtime~main.33d97da8.js",
     "runtime~main.js.map": "/bandagram/static/js/runtime~main.33d97da8.js.map",
     "static/js/2.8698fd26.chunk.js": "/bandagram/static/js/2.8698fd26.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.67d59c16.chunk.js": "/bandagram/static/js/3.67d59c16.chunk.js",
     "static/js/3.67d59c16.chunk.js.map": "/bandagram/static/js/3.67d59c16.chunk.js.map",
     "index.html": "/bandagram/index.html",
-    "precache-manifest.dd3ad5147ddf0f5e0409226e2c6f0136.js": "/bandagram/precache-manifest.dd3ad5147ddf0f5e0409226e2c6f0136.js",
+    "precache-manifest.7a443463e5e5539710b2dec6325ea710.js": "/bandagram/precache-manifest.7a443463e5e5539710b2dec6325ea710.js",
     "service-worker.js": "/bandagram/service-worker.js",
     "static/css/main.435d5fe5.chunk.css.map": "/bandagram/static/css/main.435d5fe5.chunk.css.map"
   }
