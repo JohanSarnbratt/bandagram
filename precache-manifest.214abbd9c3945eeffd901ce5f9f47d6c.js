@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "17a153ab4a081bd42b1641a1b223dd14",
+    "revision": "06d3e29ab5cd3e1ed051a8c114f83e72",
     "url": "/bandagram/index.html"
   },
   {
-    "revision": "db816f7e1040c8312d4c",
+    "revision": "0e6c62a5daaa01e4808e",
     "url": "/bandagram/static/css/main.435d5fe5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bandagram/static/js/3.67d59c16.chunk.js"
   },
   {
-    "revision": "db816f7e1040c8312d4c",
-    "url": "/bandagram/static/js/main.17214a62.chunk.js"
+    "revision": "0e6c62a5daaa01e4808e",
+    "url": "/bandagram/static/js/main.8667ad6d.chunk.js"
   },
   {
     "revision": "ecd42e115ac24cdc5293",
